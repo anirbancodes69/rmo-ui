@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { NotificationCenter } from './NotificationCenter';
 import { 
   LayoutDashboard, 
   FolderKanban, 
+  CheckSquare,
   Users, 
   Settings, 
   LogOut, 
   Menu, 
   X,
-  Bell,
   Search,
   User
 } from 'lucide-react';
@@ -23,8 +24,9 @@ export const Layout = ({ children }) => {
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, current: location.pathname === '/dashboard' },
     { name: 'Projects', href: '/projects', icon: FolderKanban, current: location.pathname.startsWith('/projects') },
+    { name: 'Tasks', href: '/tasks', icon: CheckSquare, current: location.pathname === '/tasks' },
     { name: 'Team', href: '/team', icon: Users, current: location.pathname === '/team' },
-    ...(hasRole('Manager') ? [{ name: 'Settings', href: '/settings', icon: Settings, current: location.pathname === '/settings' }] : []),
+    ...(hasRole('Admin') ? [{ name: 'Settings', href: '/settings', icon: Settings, current: location.pathname === '/settings' }] : []),
   ];
 
   const handleLogout = () => {
@@ -137,9 +139,7 @@ export const Layout = ({ children }) => {
               </div>
             </div>
             <div className="ml-4 flex items-center md:ml-6">
-              <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                <Bell className="h-6 w-6" />
-              </button>
+              <NotificationCenter />
 
               {/* Profile dropdown */}
               <div className="ml-3 relative">

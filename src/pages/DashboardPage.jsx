@@ -1,41 +1,37 @@
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   Calendar, 
   CheckCircle, 
   Clock, 
   Users, 
-  TrendingUp, 
   AlertCircle,
   Plus,
-  Filter,
-  MoreHorizontal
+  TrendingUp
 } from 'lucide-react';
 
 export const DashboardPage = () => {
-  const [timeRange, setTimeRange] = useState('week');
+  const { user } = useAuth();
 
-  // Mock data - replace with actual data from API
+  // MVP Mock data - simplified for core functionality
   const stats = {
-    totalProjects: 12,
-    activeTasks: 45,
-    completedTasks: 128,
-    teamMembers: 8,
-    overdueTasks: 3,
-    thisWeekTasks: 12
+    totalProjects: 5,
+    activeTasks: 12,
+    completedTasks: 8,
+    teamMembers: 4,
+    overdueTasks: 2
   };
 
   const recentProjects = [
-    { id: 1, name: 'Website Redesign', progress: 75, status: 'In Progress', dueDate: '2024-01-15', team: 4 },
-    { id: 2, name: 'Mobile App Development', progress: 45, status: 'In Progress', dueDate: '2024-02-01', team: 6 },
-    { id: 3, name: 'Marketing Campaign', progress: 100, status: 'Completed', dueDate: '2024-01-10', team: 3 },
-    { id: 4, name: 'Database Migration', progress: 20, status: 'Planning', dueDate: '2024-02-15', team: 2 },
+    { id: 1, name: 'Website Redesign', progress: 75, status: 'In Progress', dueDate: '2024-01-15', tasks: 8 },
+    { id: 2, name: 'Mobile App Development', progress: 45, status: 'In Progress', dueDate: '2024-02-01', tasks: 6 },
+    { id: 3, name: 'Marketing Campaign', progress: 100, status: 'Completed', dueDate: '2024-01-10', tasks: 4 },
   ];
 
   const upcomingTasks = [
-    { id: 1, title: 'Review design mockups', project: 'Website Redesign', dueDate: '2024-01-12', priority: 'High' },
-    { id: 2, title: 'Update API documentation', project: 'Mobile App Development', dueDate: '2024-01-14', priority: 'Medium' },
-    { id: 3, title: 'Conduct user testing', project: 'Website Redesign', dueDate: '2024-01-16', priority: 'High' },
-    { id: 4, title: 'Prepare presentation', project: 'Marketing Campaign', dueDate: '2024-01-18', priority: 'Low' },
+    { id: 1, title: 'Review design mockups', project: 'Website Redesign', dueDate: '2024-01-12', priority: 'High', assignee: 'Sarah' },
+    { id: 2, title: 'Update API documentation', project: 'Mobile App Development', dueDate: '2024-01-14', priority: 'Medium', assignee: 'Mike' },
+    { id: 3, title: 'Conduct user testing', project: 'Website Redesign', dueDate: '2024-01-16', priority: 'High', assignee: 'Alex' },
   ];
 
   const StatCard = ({ title, value, icon: Icon, color, change }) => (
@@ -128,18 +124,9 @@ export const DashboardPage = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">Welcome back! Here's what's happening with your projects.</p>
+          <p className="text-gray-600">Welcome back, {user?.name}! Here's what's happening in {user?.workspace}.</p>
         </div>
         <div className="flex space-x-3">
-          <select
-            value={timeRange}
-            onChange={(e) => setTimeRange(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="week">This Week</option>
-            <option value="month">This Month</option>
-            <option value="quarter">This Quarter</option>
-          </select>
           <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
             <Plus className="h-4 w-4 mr-2" />
             New Project
@@ -221,7 +208,7 @@ export const DashboardPage = () => {
               <li>
                 <div className="relative pb-8">
                   <div className="relative flex space-x-3">
-                    <div className="h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <div className="h-8 w-8 bg-green-500 rounded-full flex items-center justify-center">
                       <CheckCircle className="h-4 w-4 text-white" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -239,14 +226,14 @@ export const DashboardPage = () => {
               <li>
                 <div className="relative pb-8">
                   <div className="relative flex space-x-3">
-                    <div className="h-8 w-8 bg-green-500 rounded-full flex items-center justify-center">
-                      <Plus className="h-4 w-4 text-white" />
+                    <div className="h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center">
+                      <Users className="h-4 w-4 text-white" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div>
                         <div className="text-sm">
-                          <span className="font-medium text-gray-900">Mike Chen</span> created new project
-                          <span className="font-medium text-gray-900"> "Database Migration"</span>
+                          <span className="font-medium text-gray-900">Mike Chen</span> assigned task
+                          <span className="font-medium text-gray-900"> "Frontend development"</span>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">4 hours ago</p>
                       </div>
@@ -264,7 +251,7 @@ export const DashboardPage = () => {
                       <div>
                         <div className="text-sm">
                           <span className="font-medium text-gray-900">Alex Rodriguez</span> updated task
-                          <span className="font-medium text-gray-900"> "Conduct user testing"</span>
+                          <span className="font-medium text-gray-900"> "Backend integration"</span>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">6 hours ago</p>
                       </div>

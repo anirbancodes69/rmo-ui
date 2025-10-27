@@ -2,108 +2,70 @@ import { useState } from 'react';
 import { 
   Plus, 
   Search, 
-  Filter, 
   Grid3X3, 
   List, 
   Calendar,
   Users,
   MoreHorizontal,
   Edit,
-  Trash2,
-  Archive
+  Trash2
 } from 'lucide-react';
 
 export const ProjectsPage = () => {
   const [viewMode, setViewMode] = useState('kanban'); // 'kanban' or 'list'
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedProject, setSelectedProject] = useState(null);
 
-  // Mock data - replace with actual data from API
+  // MVP Mock data - simplified projects/boards
   const projects = [
     {
       id: 1,
       name: 'Website Redesign',
-      description: 'Complete redesign of company website with modern UI/UX',
+      description: 'Complete redesign of company website',
       status: 'In Progress',
       priority: 'High',
       progress: 75,
       dueDate: '2024-01-15',
-      team: [
-        { id: 1, name: 'Sarah Johnson', avatar: 'SJ' },
-        { id: 2, name: 'Mike Chen', avatar: 'MC' },
-        { id: 3, name: 'Alex Rodriguez', avatar: 'AR' },
-        { id: 4, name: 'Emma Wilson', avatar: 'EW' }
-      ],
+      team: ['Sarah', 'Mike', 'Alex'],
       tasks: [
-        { id: 1, title: 'Design mockups', status: 'Completed', priority: 'High' },
-        { id: 2, title: 'Frontend development', status: 'In Progress', priority: 'High' },
-        { id: 3, title: 'Backend integration', status: 'To Do', priority: 'Medium' },
-        { id: 4, title: 'Testing', status: 'To Do', priority: 'Medium' }
+        { id: 1, title: 'Design mockups', status: 'Completed', priority: 'High', assignee: 'Sarah' },
+        { id: 2, title: 'Frontend development', status: 'In Progress', priority: 'High', assignee: 'Mike' },
+        { id: 3, title: 'Backend integration', status: 'To Do', priority: 'Medium', assignee: 'Alex' },
+        { id: 4, title: 'Testing', status: 'To Do', priority: 'Medium', assignee: 'Sarah' }
       ],
-      createdAt: '2024-01-01',
-      updatedAt: '2024-01-10'
+      createdAt: '2024-01-01'
     },
     {
       id: 2,
       name: 'Mobile App Development',
-      description: 'Native mobile app for iOS and Android platforms',
+      description: 'Native mobile app for iOS and Android',
       status: 'In Progress',
       priority: 'High',
       progress: 45,
       dueDate: '2024-02-01',
-      team: [
-        { id: 1, name: 'Sarah Johnson', avatar: 'SJ' },
-        { id: 5, name: 'David Kim', avatar: 'DK' },
-        { id: 6, name: 'Lisa Park', avatar: 'LP' }
-      ],
+      team: ['Sarah', 'David', 'Lisa'],
       tasks: [
-        { id: 5, title: 'UI/UX design', status: 'Completed', priority: 'High' },
-        { id: 6, title: 'iOS development', status: 'In Progress', priority: 'High' },
-        { id: 7, title: 'Android development', status: 'In Progress', priority: 'High' },
-        { id: 8, title: 'API integration', status: 'To Do', priority: 'Medium' }
+        { id: 5, title: 'UI/UX design', status: 'Completed', priority: 'High', assignee: 'Sarah' },
+        { id: 6, title: 'iOS development', status: 'In Progress', priority: 'High', assignee: 'David' },
+        { id: 7, title: 'Android development', status: 'In Progress', priority: 'High', assignee: 'Lisa' },
+        { id: 8, title: 'API integration', status: 'To Do', priority: 'Medium', assignee: 'David' }
       ],
-      createdAt: '2024-01-05',
-      updatedAt: '2024-01-12'
+      createdAt: '2024-01-05'
     },
     {
       id: 3,
       name: 'Marketing Campaign',
-      description: 'Q1 marketing campaign for new product launch',
+      description: 'Q1 marketing campaign for new product',
       status: 'Completed',
       priority: 'Medium',
       progress: 100,
       dueDate: '2024-01-10',
-      team: [
-        { id: 7, name: 'Jennifer Lee', avatar: 'JL' },
-        { id: 8, name: 'Tom Brown', avatar: 'TB' }
-      ],
+      team: ['Jennifer', 'Tom'],
       tasks: [
-        { id: 9, title: 'Campaign strategy', status: 'Completed', priority: 'High' },
-        { id: 10, title: 'Content creation', status: 'Completed', priority: 'Medium' },
-        { id: 11, title: 'Social media posts', status: 'Completed', priority: 'Medium' }
+        { id: 9, title: 'Campaign strategy', status: 'Completed', priority: 'High', assignee: 'Jennifer' },
+        { id: 10, title: 'Content creation', status: 'Completed', priority: 'Medium', assignee: 'Tom' },
+        { id: 11, title: 'Social media posts', status: 'Completed', priority: 'Medium', assignee: 'Jennifer' }
       ],
-      createdAt: '2023-12-15',
-      updatedAt: '2024-01-10'
-    },
-    {
-      id: 4,
-      name: 'Database Migration',
-      description: 'Migrate legacy database to new cloud infrastructure',
-      status: 'Planning',
-      priority: 'Low',
-      progress: 20,
-      dueDate: '2024-02-15',
-      team: [
-        { id: 9, name: 'Robert Taylor', avatar: 'RT' },
-        { id: 10, name: 'Maria Garcia', avatar: 'MG' }
-      ],
-      tasks: [
-        { id: 12, title: 'Database analysis', status: 'In Progress', priority: 'High' },
-        { id: 13, title: 'Migration plan', status: 'To Do', priority: 'Medium' },
-        { id: 14, title: 'Data backup', status: 'To Do', priority: 'High' }
-      ],
-      createdAt: '2024-01-08',
-      updatedAt: '2024-01-11'
+      createdAt: '2023-12-15'
     }
   ];
 
@@ -116,7 +78,6 @@ export const ProjectsPage = () => {
     switch (status) {
       case 'Completed': return 'bg-green-100 text-green-800';
       case 'In Progress': return 'bg-blue-100 text-blue-800';
-      case 'Planning': return 'bg-yellow-100 text-yellow-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -176,12 +137,12 @@ export const ProjectsPage = () => {
 
       <div className="flex items-center justify-between">
         <div className="flex -space-x-2">
-          {project.team.slice(0, 3).map((member) => (
+          {project.team.slice(0, 3).map((member, index) => (
             <div
-              key={member.id}
+              key={index}
               className="h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium border-2 border-white"
             >
-              {member.avatar}
+              {member.charAt(0)}
             </div>
           ))}
           {project.team.length > 3 && (
@@ -199,7 +160,6 @@ export const ProjectsPage = () => {
 
   const KanbanView = () => {
     const columns = [
-      { id: 'planning', title: 'Planning', status: 'Planning' },
       { id: 'in-progress', title: 'In Progress', status: 'In Progress' },
       { id: 'completed', title: 'Completed', status: 'Completed' }
     ];
@@ -242,12 +202,12 @@ export const ProjectsPage = () => {
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex -space-x-1">
-                          {project.team.slice(0, 3).map((member) => (
+                          {project.team.slice(0, 3).map((member, index) => (
                             <div
-                              key={member.id}
+                              key={index}
                               className="h-6 w-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium border border-white"
                             >
-                              {member.avatar}
+                              {member.charAt(0)}
                             </div>
                           ))}
                         </div>
@@ -319,12 +279,12 @@ export const ProjectsPage = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex -space-x-1">
-                    {project.team.slice(0, 3).map((member) => (
+                    {project.team.slice(0, 3).map((member, index) => (
                       <div
-                        key={member.id}
+                        key={index}
                         className="h-6 w-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium border border-white"
                       >
-                        {member.avatar}
+                        {member.charAt(0)}
                       </div>
                     ))}
                     {project.team.length > 3 && (
@@ -361,7 +321,7 @@ export const ProjectsPage = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Projects</h1>
-          <p className="text-gray-600">Manage and track your projects efficiently.</p>
+          <p className="text-gray-600">Manage your projects and track progress.</p>
         </div>
         <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           <Plus className="h-4 w-4 mr-2" />
@@ -369,7 +329,7 @@ export const ProjectsPage = () => {
         </button>
       </div>
 
-      {/* Filters and Search */}
+      {/* Search and View Toggle */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
         <div className="flex items-center space-x-4">
           <div className="relative">
@@ -382,10 +342,6 @@ export const ProjectsPage = () => {
               className="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          <button className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            <Filter className="h-4 w-4 mr-2" />
-            Filter
-          </button>
         </div>
         
         <div className="flex items-center space-x-2">

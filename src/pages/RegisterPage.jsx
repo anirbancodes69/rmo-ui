@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Building } from 'lucide-react';
 
 export const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [workspace, setWorkspace] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ export const RegisterPage = () => {
     setLoading(true);
 
     try {
-      await register(name, email, password);
+      await register(name, email, password, workspace);
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
@@ -95,6 +96,27 @@ export const RegisterPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="appearance-none rounded-md relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                   placeholder="Enter your email"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="workspace" className="block text-sm font-medium text-gray-700">
+                Company/Workspace Name
+              </label>
+              <div className="mt-1 relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Building className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  id="workspace"
+                  name="workspace"
+                  type="text"
+                  autoComplete="organization"
+                  required
+                  value={workspace}
+                  onChange={(e) => setWorkspace(e.target.value)}
+                  className="appearance-none rounded-md relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  placeholder="Enter your company name"
                 />
               </div>
             </div>

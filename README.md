@@ -1,28 +1,51 @@
-# RMO - Resource Management and Operations
+# RMO - Resource Management and Operations (MVP)
 
-A modern, intuitive Resource Management and Operations web application similar to Monday.com, tailored specifically for small and medium-sized businesses (SMBs). Built with React, TailwindCSS, and modern web technologies.
+A streamlined Resource Management and Operations web application similar to Monday.com, designed specifically for small and medium-sized businesses (SMBs). This MVP focuses on core functionality with clarity and usability over features.
 
-## 🚀 Features
+## 🎯 MVP Vision
 
-### Core Functionality
-- **Dashboard**: Visual overview of tasks, projects, team utilization, and KPIs
-- **Project Management**: Create and manage projects with flexible data structure
-- **Task Management**: Kanban and List views with drag-and-drop functionality
-- **Team Management**: User roles, permissions, and collaboration features
-- **Real-time Updates**: Activity logs, comments, and notifications
+Help SMBs organize, assign, and track resources or tasks in a simple, collaborative way. Focus on clarity + usability > features.
 
-### Authentication & Security
-- JWT-based authentication
-- Role-based access control (Admin, Manager, Member)
-- Secure password policies
-- Session management
+## 🚀 MVP Features (8 Core Features)
 
-### User Experience
-- Responsive design (desktop-first, mobile-friendly)
-- Modern, clean UI similar to Monday.com
-- Drag-and-drop task management
-- Real-time notifications
-- Customizable dashboard widgets
+### 1️⃣ Authentication & Workspace
+- Email + Password Login
+- Basic role system: Admin, Member
+- Organization/Workspace setup for multiple companies
+
+### 2️⃣ Dashboard (Overview Page)
+- Summary of projects, tasks, and resources
+- "What's going on today?" view
+- Key metrics and recent activity
+
+### 3️⃣ Projects / Boards
+- Create and manage projects or boards
+- Each board represents a project, client, or department
+- Simple Kanban and List views
+
+### 4️⃣ Tasks / Items
+- Add, edit, and delete tasks inside projects
+- Core fields: title, assignee, status (To Do / In Progress / Done), due date, priority
+- Task detail modal with full information
+
+### 5️⃣ Simple Collaboration
+- Comments on tasks (mini chat per task)
+- Basic task discussions and updates
+
+### 6️⃣ Resource Assignment
+- Each task can be assigned to a person
+- Simple dropdown for "Assigned To"
+- Team member management
+
+### 7️⃣ Notifications (Basic)
+- In-app notifications (e.g., "Task assigned to you")
+- Notification center with unread counts
+- Real-time activity updates
+
+### 8️⃣ Activity Log
+- Track simple changes: "Anirban updated Task X status to Done"
+- Recent activity feed on dashboard
+- User action history
 
 ## 🛠️ Tech Stack
 
@@ -57,52 +80,49 @@ A modern, intuitive Resource Management and Operations web application similar t
 4. **Open your browser**
    Navigate to `http://localhost:5173`
 
-## 🔐 Demo Credentials
+## 🔐 MVP Demo Credentials
 
-For testing purposes, use these demo credentials:
+For testing the MVP, use these simplified credentials:
 
 - **Admin**: `admin@rmo.com` / `password`
-- **Manager**: `manager@rmo.com` / `password`
 - **Member**: `member@rmo.com` / `password`
 
 ## 📱 Usage
 
 ### Getting Started
 
-1. **Login** with your credentials or create a new account
-2. **Dashboard** - View project overview, KPIs, and recent activity
-3. **Projects** - Create and manage projects with team assignments
-4. **Tasks** - Switch between Kanban and List views for task management
-5. **Team** - Manage team members and their roles
-6. **Settings** - Configure workspace settings (Manager/Admin only)
+1. **Login** with MVP demo credentials or create a new account with workspace
+2. **Dashboard** - View essential overview, stats, and recent activity
+3. **Projects** - Create and manage simple project boards
+4. **Tasks** - Manage tasks with core fields and comments
+5. **Team** - View team members and basic information
+6. **Notifications** - Check in-app notifications and activity
 
 ### Key Features
 
 #### Dashboard
-- Customizable widgets showing project status, task progress, and team activity
-- Real-time KPIs and metrics
-- Recent activity feed
-- Quick action buttons
+- Essential stats: Total Projects, Active Tasks, Team Members, Overdue Tasks
+- Recent projects with progress indicators
+- Upcoming tasks with priorities
+- Recent activity log
 
 #### Project Management
-- Create projects with descriptions, due dates, and team assignments
-- Track progress with visual progress bars
-- Assign team members and set priorities
-- Switch between Kanban and List views
+- Simple project boards with basic information
+- Progress tracking with visual bars
+- Team member assignments
+- Kanban and List view options
 
 #### Task Management
-- Drag-and-drop functionality for task status updates
-- Priority levels (High, Medium, Low)
-- Due date tracking
-- Assignee management
-- Comments and file attachments
-- Activity logs
+- Core task fields: Title, Description, Status, Priority, Due Date, Assignee
+- Task detail modal with editing capabilities
+- Comments system for collaboration
+- Status updates and progress tracking
 
 #### Team Management
-- Role-based permissions (Admin, Manager, Member)
-- Team member profiles with contact information
-- Online status indicators
-- Project and task assignments
+- Basic team member profiles
+- Role-based access (Admin/Member)
+- Simple assignment system
+- Contact information display
 
 ## 🏗️ Project Structure
 
@@ -179,17 +199,25 @@ npm run build
 npm run preview
 ```
 
-## 🔮 Future Enhancements
+## 🔮 MVP Roadmap
 
+### Phase 2 (Post-MVP)
 - [ ] Real-time collaboration with WebSockets
 - [ ] Advanced reporting and analytics
 - [ ] Mobile app (React Native)
 - [ ] Third-party integrations (Slack, GitHub, etc.)
 - [ ] Advanced project templates
 - [ ] Time tracking and billing
-- [ ] Advanced notification system
+- [ ] Email notifications
 - [ ] Dark mode support
 - [ ] Multi-language support
+
+### Current MVP Focus
+- ✅ Core task and project management
+- ✅ Simple collaboration features
+- ✅ Basic notifications and activity tracking
+- ✅ Clean, intuitive interface
+- ✅ Role-based access control
 
 ## 🤝 Contributing
 

@@ -118,10 +118,9 @@ export const LoginPage = () => {
           </div>
 
           <div className="mt-6 p-4 bg-blue-50 rounded-md">
-            <p className="text-sm text-blue-800 font-medium">Demo Credentials:</p>
+            <p className="text-sm text-blue-800 font-medium">MVP Demo Credentials:</p>
             <p className="text-xs text-blue-700 mt-1">
               Admin: admin@rmo.com / password<br />
-              Manager: manager@rmo.com / password<br />
               Member: member@rmo.com / password
             </p>
           </div>

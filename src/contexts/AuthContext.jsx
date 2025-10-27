@@ -26,9 +26,11 @@ export const AuthProvider = ({ children }) => {
           id: payload.userId,
           email: payload.email,
           name: payload.name,
-          role: payload.role
+          role: payload.role,
+          workspace: payload.workspace || 'Demo Company'
         });
       } catch (error) {
+        console.error('Token decode error:', error);
         localStorage.removeItem('rmo_token');
       }
     }
@@ -61,19 +63,21 @@ export const AuthProvider = ({ children }) => {
         id: payload.userId,
         email: payload.email,
         name: payload.name,
-        role: payload.role
+        role: payload.role,
+        workspace: payload.workspace
       };
       
       setUser(userData);
       toast.success('Welcome back!');
       return userData;
     } catch (error) {
-      // For demo purposes, simulate login with mock data
+      // For MVP demo purposes, simulate login with mock data
       const mockUser = {
         id: '1',
         email: email,
         name: email.split('@')[0],
-        role: email.includes('admin') ? 'Admin' : email.includes('manager') ? 'Manager' : 'Member'
+        role: email.includes('admin') ? 'Admin' : 'Member',
+        workspace: 'Demo Company'
       };
       
       const mockToken = btoa(JSON.stringify({
@@ -81,6 +85,7 @@ export const AuthProvider = ({ children }) => {
         email: mockUser.email,
         name: mockUser.name,
         role: mockUser.role,
+        workspace: mockUser.workspace,
         exp: Date.now() + 24 * 60 * 60 * 1000 // 24 hours
       }));
       
@@ -91,14 +96,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (name, email, password) => {
+  const register = async (name, email, password, workspace) => {
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, workspace }),
       });
 
       if (!response.ok) {
@@ -109,7 +114,7 @@ export const AuthProvider = ({ children }) => {
       toast.success('Account created successfully!');
       return data;
     } catch (error) {
-      // For demo purposes, simulate registration
+      // For MVP demo purposes, simulate registration
       toast.success('Account created successfully!');
       return { success: true };
     }
@@ -126,8 +131,7 @@ export const AuthProvider = ({ children }) => {
     
     const roleHierarchy = {
       'Member': 1,
-      'Manager': 2,
-      'Admin': 3
+      'Admin': 2
     };
     
     return roleHierarchy[user.role] >= roleHierarchy[requiredRole];
