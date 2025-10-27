@@ -1,58 +1,43 @@
-# RMO - Resource Management and Operations (MVP)
+# RMO - Resource Management and Operations
 
-A streamlined Resource Management and Operations web application similar to Monday.com, designed specifically for small and medium-sized businesses (SMBs). This MVP focuses on core functionality with clarity and usability over features.
+A modern, intuitive Resource Management and Operations (RMO) web application similar to Monday.com, tailored specifically for small and medium-sized businesses (SMBs). Built with React, TailwindCSS, and modern web technologies.
 
-## 🎯 MVP Vision
+## 🎯 Features
 
-Help SMBs organize, assign, and track resources or tasks in a simple, collaborative way. Focus on clarity + usability > features.
+### 🔐 Authentication & Authorization
+- **Email/Password Login** with JWT tokens
+- **Role-based Access Control**: Admin, Manager, Member roles
+- **Secure Session Management** with automatic token refresh
 
-## 🚀 MVP Features (8 Core Features)
+### 📊 Dashboard
+- **Visual Overview** of tasks, projects, team utilization, and KPIs
+- **Customizable Widgets** and filters
+- **Real-time Activity Feed**
+- **Statistics Cards** with key metrics
 
-### 1️⃣ Authentication & Workspace
-- Email + Password Login
-- Basic role system: Admin, Member
-- Organization/Workspace setup for multiple companies
+### 📋 Projects & Tasks
+- **Create and Manage Projects** with flexible data structure
+- **Task Boards** (Kanban and List views)
+- **Drag-and-drop** for task status updates
+- **Comments**, file attachments, and activity logs
+- **Priority and Due Date** management
 
-### 2️⃣ Dashboard (Overview Page)
-- Summary of projects, tasks, and resources
-- "What's going on today?" view
-- Key metrics and recent activity
+### 👥 Team Management
+- **Team Member Profiles** with roles and permissions
+- **User Management** for Admins
+- **Activity Tracking** per team member
 
-### 3️⃣ Projects / Boards
-- Create and manage projects or boards
-- Each board represents a project, client, or department
-- Simple Kanban and List views
-
-### 4️⃣ Tasks / Items
-- Add, edit, and delete tasks inside projects
-- Core fields: title, assignee, status (To Do / In Progress / Done), due date, priority
-- Task detail modal with full information
-
-### 5️⃣ Simple Collaboration
-- Comments on tasks (mini chat per task)
-- Basic task discussions and updates
-
-### 6️⃣ Resource Assignment
-- Each task can be assigned to a person
-- Simple dropdown for "Assigned To"
-- Team member management
-
-### 7️⃣ Notifications (Basic)
-- In-app notifications (e.g., "Task assigned to you")
-- Notification center with unread counts
-- Real-time activity updates
-
-### 8️⃣ Activity Log
-- Track simple changes: "Anirban updated Task X status to Done"
-- Recent activity feed on dashboard
-- User action history
+### 🔧 Settings & Configuration
+- **Company Settings** (Manager/Admin only)
+- **Profile Management**
+- **System Configuration**
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, TailwindCSS 4
+- **Frontend**: React 19 + TailwindCSS 4
 - **State Management**: React Query (TanStack Query)
 - **Routing**: React Router DOM
-- **Authentication**: JWT tokens
+- **Authentication**: JWT-based with role management
 - **Drag & Drop**: @dnd-kit
 - **Icons**: Lucide React
 - **Notifications**: React Hot Toast
@@ -80,20 +65,21 @@ Help SMBs organize, assign, and track resources or tasks in a simple, collaborat
 4. **Open your browser**
    Navigate to `http://localhost:5173`
 
-## 🔐 MVP Demo Credentials
+## 🔐 Demo Credentials
 
-For testing the MVP, use these simplified credentials:
+For testing, use these credentials:
 
 - **Admin**: `admin@rmo.com` / `password`
+- **Manager**: `manager@rmo.com` / `password`
 - **Member**: `member@rmo.com` / `password`
 
 ## 📱 Usage
 
 ### Getting Started
 
-1. **Login** with MVP demo credentials or create a new account with workspace
-2. **Dashboard** - View essential overview, stats, and recent activity
-3. **Projects** - Create and manage simple project boards
+1. **Login** with demo credentials or create a new account
+2. **Dashboard** - View overview, stats, and recent activity
+3. **Projects** - Create and manage project boards
 4. **Tasks** - Manage tasks with core fields and comments
 5. **Team** - View team members and basic information
 6. **Notifications** - Check in-app notifications and activity
